@@ -10,6 +10,9 @@ def call(body) {
 		deleteDir()
 
 		try {
+			stage ('Checkout SCM') {   
+				checkout scm
+			}		
 			stage ('Compile Stage') {   
 				sh "echo 'building ${config.projectName} ...'"
 				withMaven(maven : 'maven_3_5_0') {
