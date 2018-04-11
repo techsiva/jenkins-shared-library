@@ -29,14 +29,6 @@ def call(body) {
 					sh 'mvn deploy'
 				}
 			}			       
-			post {
-				success {
-					mail to:"ruban.yuvaraj@gmail.com", subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", body: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-				}
-				failure {
-					mail to:"ruban.yuvaraj@gmail.com", subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", body: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-				}
-			}
 		} catch (err) {
 			currentBuild.result = 'FAILED'
 			throw err
